@@ -5,8 +5,8 @@
 
 int main(int argc, char** argv)
 {
-	const auto host = "192.168.0.101";
-	const auto port = "2751";
+	const auto host = "127.0.0.1";
+	const auto port = "8888";
 
 	// The io_context is required for all I/O
 	boost::asio::io_context ioContext;
@@ -16,11 +16,13 @@ int main(int argc, char** argv)
 	auto handshake = requestsManager.getMap().at("Handshake")->getContentAsString();
 	auto sum = requestsManager.getMap().at("Sum")->getContentAsString();
 	auto wordcounter = requestsManager.getMap().at("WordCounter")->getContentAsString();
+	auto date = requestsManager.getMap().at("Date")->getContentAsString();
 
 	// Launch the asynchronous operation
 	std::make_shared<Session>(ioContext)->run(host, port, handshake);
 	std::make_shared<Session>(ioContext)->run(host, port, sum);
 	std::make_shared<Session>(ioContext)->run(host, port, wordcounter);
+	std::make_shared<Session>(ioContext)->run(host, port, date);
 
 	// Run the I/O service. The call will return when
 	// the socket is closed.
