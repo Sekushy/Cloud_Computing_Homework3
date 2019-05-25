@@ -6,8 +6,4 @@ class DateRequest : public Framework::Request
 {
 public:
 	DateRequest();
-private:
-	int year;
-	int month;
-	int day;
 };
